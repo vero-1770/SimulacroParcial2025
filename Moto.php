@@ -68,14 +68,16 @@ class moto {
         return "Codigo: " . $this->getCodigo() . 
         "\nAño de fabricación: " . $this->getAnioFabricacion() . 
         "\nDescripción: " . $this->getDescripcion() . 
-        "\nPorcentaje de incremento anual: " . $this->getPorcentajeIncrementoAnual() . "%" ;
+        "\nPorcentaje de incremento anual: " . $this->getPorcentajeIncrementoAnual() . "%" .
+        "\n" . $this->darPrecioVenta() . "$ pesos" ;
     }
 
     public function darPrecioVenta() {
-        $vente = -1;
+        $venta = -1;
+        $aniosMoto = 2025 - $this->getAnioFabricacion;
     
         if ($this->getActiva() == true) {
-          $venta = $this->getPrecio() + $this->getPrecio() * ($this->getAnioFabricacion() * $this->getPorcentajeIncrementoAnual());
+          $venta = $this->getPrecio() + $this->getPrecio() * ($aniosMoto * $this->getPorcentajeIncrementoAnual());
         }
         return $venta;
     }
