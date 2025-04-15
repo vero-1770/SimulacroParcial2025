@@ -1,8 +1,7 @@
 <?php
+include_once 'Moto.php';
+include_once 'Venta.php';
 /* En la clase Empresa:
- 4. Redefinir el método _toString para que retorne la información de los atributos de la clase.
- 5. Implementar el método retornarMoto($codigoMoto) que recorre la colección de motos de la Empresa y
- retorna la referencia al objeto moto cuyo código coincide con el recibido por parámetro.
  6. Implementar el método registrarVenta($colCodigosMoto, $objCliente) método que recibe por
  parámetro una colección de códigos de motos, la cual es recorrida, y por cada elemento de la colección
  se busca el objeto moto correspondiente al código y se incorpora a la colección de motos de la instancia
@@ -75,6 +74,16 @@ class Empresa {
                 "\nVentas " . $this->getColeccionVentas();
     }
 
-    
+    public function retornarMoto($codigoMoto) {
+        $motoEncontrada = false;
+
+        foreach ($this->getColeccionMotos() as $moto) {
+            if ($this->getCodigo() == $codigoMoto) {
+                $motoEncontrada = true;
+            }
+        }
+        return $motoEncontrada;
+    }
+  
 }
 ?>
