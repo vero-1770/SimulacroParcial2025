@@ -1,15 +1,6 @@
 <?php
-/* En la clase Venta:
- 1. Se registra la siguiente información: número, fecha, referencia al cliente, referencia a una colección de
- motos y el precio final.
- 2. Método constructor que recibe como parámetros cada uno de los valores a ser asignados a cada
- atributo de la clase.
- 3. Los métodos de acceso de cada uno de los atributos de la clase.
- 4. Redefinir el método _toString para que retorne la información de los atributos de la clase.
- 5. Implementar el método incorporarMoto($objMoto) que recibe por parámetro un objeto moto y lo
- incorpora a la colección de motos de la venta, siempre y cuando sea posible la venta. El método cada
- vez que incorpora una moto a la venta, debe actualizar la variable instancia precio final de la venta.
- Utilizar el método que calcula el precio de venta de la moto donde crea necesario*/
+include_once 'Moto.php';
+
 class Venta {
     private $nroVenta;
     private $fechaVenta;
@@ -44,5 +35,55 @@ class Venta {
     public function getPrecioFinal() {
         return $this->precioFinal;
     }
+
+    public function setNroVenta($numVenta) {
+        $this->nroVenta = $numVenta;
+    }
+
+    public function setFechaVenta($dateVenta) {
+        $this->fechaVenta = $dateVenta;
+    }
+
+    public function setRefCliente($referenciaCliente) {
+        $this->refCliente = $referenciaCliente;
+    }
+
+    public function setRefColeccionMotos($motosColeccionRef) {
+        $this->refColeccionMotos = $motosColeccionRef;
+    }
+
+    public function setPrecioFinal($precioF) {
+        $this->precioFinal = $precioF;
+    }
+
+    public function incorporarMoto($objMoto) {
+        $realizado = false;
+
+        if ($this->getActiva()) {
+            $coleccion = $this->getRefColeccionMotos(); 
+            $coleccion[] = $objMoto; 
+            $this->setRefColeccionMotos($coleccion); 
+            $this->setPrecioFinal($objMoto->darPrecioVenta() + $this->getPrecioFinal); 
+            $realizado = true;
+        }
+        return $realizado;
+    }
+
+    public function __toString() {
+
+        $motos = [];  
+        $coleccionMotos = $this->getRefColeccionMotos(); 
+        foreach ($this->getRefColeccionMotos() as $moto) {
+            $motos .= $moto . "\n";
+        }
+        
+        return "Numero: " . $this->getNroVenta() . "\n" .
+                "Fecha: " . $this->getFechaVenta() . "\n" .
+                "Cliente: " . $this->getRefCliente() . "\n" .
+                "Coleccion Motos: " . $motos . "\n" .
+                "Precio Final: " . $this->getPrecioFinal() . "\n" ;
+    
+    }
+
 }
 ?>

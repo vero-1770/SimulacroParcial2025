@@ -1,5 +1,5 @@
 <?php
-class moto {
+class Moto {
     private $codigo;
     private $precio;
     private $anioFabricacion;
@@ -66,6 +66,7 @@ class moto {
 
     public function __toString() {
         return "Codigo: " . $this->getCodigo() . 
+        "\nPrecio: " . $this->getPrecio() .
         "\nAño de fabricación: " . $this->getAnioFabricacion() . 
         "\nDescripción: " . $this->getDescripcion() . 
         "\nPorcentaje de incremento anual: " . $this->getPorcentajeIncrementoAnual() . "%" .
@@ -74,7 +75,7 @@ class moto {
 
     public function darPrecioVenta() {
         $venta = -1;
-        $aniosMoto = 2025 - $this->getAnioFabricacion;
+        $aniosMoto = date(Y) - $this->getAnioFabricacion();
     
         if ($this->getActiva() == true) {
           $venta = $this->getPrecio() + $this->getPrecio() * ($aniosMoto * $this->getPorcentajeIncrementoAnual());

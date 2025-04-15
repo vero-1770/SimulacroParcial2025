@@ -1,8 +1,9 @@
 <?php
-include 'Persona.php';
-include 'Cliente.php';
-include 'Moto.php';
-include 'Venta.php';
+include_once 'Persona.php';
+include_once 'Cliente.php';
+include_once 'Moto.php';
+include_once 'Venta.php';
 
-   echo $cliente;
+
+
 ?>
